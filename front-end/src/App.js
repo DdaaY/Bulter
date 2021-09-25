@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import React ,{ useState } from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 // import { makeStyles } from '@mui/styles'; 
 // import LoginForm from './components/LoginForm';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,6 +10,7 @@ import EditExercise from './components/edit-exercise';
 import CreateExercise from './components/create-exercise';
 import CreateUser from './components/create-user';
 import Homepage from './components/homepage';
+import Signin from './components/signin';
 
 // const useStyles = makeStyles(theme => ({
 //     container : {
@@ -19,6 +20,10 @@ import Homepage from './components/homepage';
 
 
 export default function App (){
+
+    const [User, setUser] = useState();
+    const [IsSignin, setIsSignin] = useState(false);
+
 
     // const adminUser = {
     //     email : "1596934767@qq.com",
@@ -64,17 +69,27 @@ export default function App (){
         //         <LoginForm Login = {Login} error = {error}/>
         //     )}
         // </div>
-        <Router>
-            <div className = "container">
-                <Navbar />
-                <br/>
-                <Route path='/' exact component = {ExercisesList} />
-                <Route path='/edit/:id' component = {EditExercise} />
-                <Route path='/create' component = {CreateExercise} />
-                <Route path='/user' component = {CreateUser} />
-                <Route path='/home' component = {Homepage} />
-            </div>
-        </Router>
+
+        <div>
+            {(IsSignin) ? (
+            <Router>
+                <div className = "container">
+                    <Navbar/>
+                    <br/>
+                    <Route path='/' exact component = {ExercisesList} />
+                    <Route path='/edit/:id' component = {EditExercise} />
+                    <Route path='/create' component = {CreateExercise} />
+                    <Route path='/user' component = {CreateUser} />
+                    <Route path='/home' component = {Homepage} />
+                    <Route path = '/signin' component = {Signin} />
+                </div>
+            </Router>) : (
+            <div>
+                <Signin />
+            </div>)}
+        </div>
+
+        
         
     );
 }

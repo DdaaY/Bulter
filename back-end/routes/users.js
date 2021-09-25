@@ -17,3 +17,6 @@ router.route('/add').post((req,res) => {
 });
 
 module.exports = router;
+
+
+//to start the server, cd to back-end folder, then type 'nodemon server'
