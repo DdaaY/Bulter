@@ -4,13 +4,16 @@ A webpage software developed using a front-end and back-end separation architect
 
 # Running the project locally
 
-Start server (port: 5000):\
-`cd Bulter/back-end` \
+# Install following packages in corresponding path 
+
+in Bulter/back-end:
 `npm install -g nodemon`\
 `npm install express`\
 `npm install cors`\
 `npm install dotenv`\
 `npm install mongoose`\
+
+To start server,run following commands in `Bulter-end`:
 `nodemon server`
 
 Start client (port: 3000):\
