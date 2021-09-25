@@ -24,6 +24,10 @@ export default function App (){
     const [User, setUser] = useState();
     const [IsSignin, setIsSignin] = useState(false);
 
+    const handleSignin = () => {
+        setIsSignin(!IsSignin);
+    }
+
 
     // const adminUser = {
     //     email : "1596934767@qq.com",
@@ -85,7 +89,7 @@ export default function App (){
                 </div>
             </Router>) : (
             <div>
-                <Signin />
+                <Signin handle={handleSignin}/>
             </div>)}
         </div>
 
