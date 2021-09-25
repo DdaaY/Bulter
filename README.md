@@ -6,24 +6,24 @@ A webpage software developed using a front-end and back-end separation architect
 
 # Install following packages
 
-cd Bulter/back-end:\
+## cd Bulter/back-end:\
 `npm install -g nodemon`\
 `npm install express`\
 `npm install cors`\
 `npm install dotenv`\
 `npm install mongoose`
 
-`cd Bulter`:\
+## cd Bulter:\
 `npm install axios`\
 `npm install bootstrap`\
 `npm install react-datepicker`\
 `npm install react-router-dom`\
 
-server start:\
+## server start:\
 `cd Bulter/back-end`\
 `nodemon server`\
 
-React start:\
+## React start:\
 `cd Bulter/front-end`\
 `npm start`\
 
