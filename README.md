@@ -17,15 +17,15 @@ A webpage software developed using a front-end and back-end separation architect
 `npm install axios`\
 `npm install bootstrap`\
 `npm install react-datepicker`\
-`npm install react-router-dom`\
+`npm install react-router-dom`
 
 ## server start:
 `cd Bulter/back-end`\
-`nodemon server`\
+`nodemon server`
 
 ## React start:
 `cd Bulter/front-end`\
-`npm start`\
+`npm start`
 
 # Dependencies
 
