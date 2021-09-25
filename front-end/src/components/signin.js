@@ -1,4 +1,5 @@
 import { Component } from "react";
+import axios from 'axios';
 
 export default class Signin extends Component {
     render() {
@@ -9,6 +10,12 @@ export default class Signin extends Component {
                     <div className = "form-group">
                         <label>Email:</label>
                         <input type='email'
+                            required
+                            className="form-control"/>
+                    </div>
+                    <div className = "form-group">
+                        <label>Password:</label>
+                        <input type='password'
                             required
                             className="form-control"/>
                     </div>
