@@ -1,4 +1,3 @@
-@@ -1,32 +1,2 @@
 # Bulter-
 
 A webpage software developed using a front-end and back-end separation architecture. Use MERN (MongoDB, Express, React, Node.js) stack to develop.
@@ -15,11 +14,12 @@ Start server (port: 5000):\
 `nodemon server`
 
 Start client (port: 3000):\
-`cd Bulter/front-end`\
+`cd Bulter`\
 `npm install axios`\
 `npm install bootstrap`\
 `npm install react-datepicker`\
 `npm install react-router-dom`\
+`cd Bulter/front-end`\
 `npm start`
 
 # Dependencies
