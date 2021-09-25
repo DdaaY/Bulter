@@ -4,26 +4,28 @@ A webpage software developed using a front-end and back-end separation architect
 
 # Running the project locally
 
-# Install following packages in corresponding path 
+# Install following packages
 
-in Bulter/back-end:\
+cd Bulter/back-end:\
 `npm install -g nodemon`\
 `npm install express`\
 `npm install cors`\
 `npm install dotenv`\
 `npm install mongoose`
 
-To start server,run following commands in `Bulter-end`:
-`nodemon server`\
-
-Start client (port: 3000):\
-`cd Bulter`\
+`cd Bulter`:\
 `npm install axios`\
 `npm install bootstrap`\
 `npm install react-datepicker`\
 `npm install react-router-dom`\
+
+server start:\
+`cd Bulter/back-end`\
+`nodemon server`\
+
+React start:\
 `cd Bulter/front-end`\
-`npm start`
+`npm start`\
 
 # Dependencies
 
