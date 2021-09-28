@@ -5,12 +5,10 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Navbar from './components/Navbar';
-import ExercisesList from './components/exercise-list';
-import EditExercise from './components/edit-exercise';
-import CreateExercise from './components/create-exercise';
-import CreateUser from './components/create-user';
 import Homepage from './components/homepage';
 import Signin from './components/signin';
+import Signup from './components/signup';
+import Intro from './components/intro';
 
 // const useStyles = makeStyles(theme => ({
 //     container : {
@@ -80,16 +78,16 @@ export default function App (){
                 <div className = "container">
                     <Navbar/>
                     <br/>
-                    <Route path='/' exact component = {ExercisesList} />
-                    <Route path='/edit/:id' component = {EditExercise} />
-                    <Route path='/create' component = {CreateExercise} />
-                    <Route path='/user' component = {CreateUser} />
-                    <Route path='/home' component = {Homepage} />
-                    <Route path = '/signin' component = {Signin} />
+                    <Route path='/' exact component = {Homepage} />
                 </div>
             </Router>) : (
             <div>
-                <Signin handle={handleSignin}/>
+            <Router>
+                <Route path='/' exact  component = {Intro} />
+                <Route path='/signin' component={() => <Signin handle={handleSignin} />} />
+                 <Route path='/signup' component={() => <Signup handle={handleSignin} />}/>
+                
+            </Router>
             </div>)}
         </div>
 

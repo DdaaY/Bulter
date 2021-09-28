@@ -1,5 +1,5 @@
 const router = require('express').Router();
-let User = require('../models/user.model');
+let User = require('../models/user');
 
 router.route('/').get((req,res) => {
     User.find()
@@ -7,12 +7,12 @@ router.route('/').get((req,res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req,res) => {
-    const username = req.body.username;
-    const newUser = new User({username});
+router.route('/check').get((req,res) => {
+    const email = req.body.email;
+    const password = req.body.password;
 
-    newUser.save()
-    .then(() => res.json('User added!'))
+    User.find({email:email , password: password})
+    .then(response => console.log(res))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

@@ -10,10 +10,12 @@ export default class Signin extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
 
         this.state = {
             email: '',
             password:  '',
+            confirm_password: '',
         }
     }
 
@@ -28,10 +30,15 @@ export default class Signin extends Component {
             password: e.target.value
         });
     }
+    onChangeConfirmPassword(e) {
+        this.setState({
+            confirm_password: e.target.value
+        });
+    }
 
     onSubmit(e) {
         e.preventDefault();
-
+        
         const user = {
             email: this.state.email,
             password: this.state.password
@@ -39,15 +46,8 @@ export default class Signin extends Component {
 
         console.log(user);
         //use axios to check if user is in DB
-        axios.get('http://localhost:5000/signin/check'+this.state.email)
-        .then(res => {
-            console.log(res)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-        
-
+        axios.post('http://localhost:5000/signup/add',user)
+        .then(res => console.log(res.data));
         //change IsSignin to true
         this.props.handle();
         //auto move to home page
@@ -57,7 +57,7 @@ export default class Signin extends Component {
     render() {
         return (
             <div>
-                <h3>Sign in</h3>
+                <h3>Sign up</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className = "form-group">
                         <label>Email:</label>
@@ -66,6 +66,7 @@ export default class Signin extends Component {
                             className="form-control"
                             value = {this.state.email}
                             onChange = {this.onChangeEmail}
+                            placeholder = "Enter name"
                             />
                     </div>
                     <div className = "form-group">
@@ -74,7 +75,19 @@ export default class Signin extends Component {
                             required
                             className="form-control"
                             value = {this.state.password}
-                            onChange = {this.onChangePassword}/>
+                            onChange = {this.onChangePassword}
+                            placeholder = "Enter password"
+                            />
+                    </div>
+                    <div className = "form-group">
+                        <label>Check password:</label>
+                        <input type='password'
+                            required
+                            className="form-control"
+                            value = {this.state.confirm_password}
+                            onChange = {this.onChangeConfirmPassword}
+                            placeholder = "confirm your password"
+                            />
                     </div>
 
                     <div className = "form-group">
@@ -82,7 +95,7 @@ export default class Signin extends Component {
                     </div>
 
                 </form>
-                <Link to={'/signup/'}>sign up</Link>
+                <Link to={'/signin/'}>sign in using exist account</Link>
             </div>
         );
     }
