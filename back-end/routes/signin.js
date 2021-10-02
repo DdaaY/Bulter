@@ -7,14 +7,14 @@ router.route('/').get((req,res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/check').get((req,res) => {
-    const email = req.body.email;
-    const password = req.body.password;
+router.route('/:email').get((req,res) => {
+    const email = req.params.email;
 
-    User.find({email:email , password: password})
-    .then(response => console.log(res))
+    User.find({email:email})
+    .then(user => res.json(user))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
 
 module.exports = router;
 

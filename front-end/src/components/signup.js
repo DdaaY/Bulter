@@ -14,8 +14,9 @@ export default class Signin extends Component {
 
         this.state = {
             email: '',
-            password:  '',
+            password:  '',//recommend 8-20 characters and no limitation on the existence of special characters
             confirm_password: '',
+            isExist: false,
         }
     }
 
@@ -36,21 +37,59 @@ export default class Signin extends Component {
         });
     }
 
-    onSubmit(e) {
+    async onSubmit(e) {
         e.preventDefault();
         
-        const user = {
-            email: this.state.email,
-            password: this.state.password
+        //validation of information
+
+        switch(this.validate()){
+            case 'invalidpassword':
+
+                break;
+            case 'unmatch':
+                break;
+            default:
+                break;
         }
 
-        console.log(user);
-        //use axios to check if user is in DB
-        axios.post('http://localhost:5000/signup/add',user)
-        .then(res => console.log(res.data));
-        //change IsSignin to true
-        this.props.handle();
-        //auto move to home page
+        if(this.validate()){
+            const user = {
+                email: this.state.email,
+                password: this.state.password
+            };
+            
+            await axios.get('http://localhost:5000/signup/'+user.email)
+            .then(res => {
+                console.log(res.data);
+                if(res.data.length > 0){
+                    this.setState({
+                        isExist: true,
+                    })
+                }
+            });
+
+            if(this.state.isExist){
+                console.log('Exist');
+            }else{
+                axios.post('http://localhost:5000/signup/add',user)
+                .then(res => console.log(res.data));
+
+
+                window.location = '/home';
+            }
+
+        }else{
+            //alert notice
+        }
+    }
+
+    validate(){
+        if(this.state.password === this.state.confirm_password){
+            if(this.state.password.length >= 8 && this.state.password.length <= 20){
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -78,6 +117,7 @@ export default class Signin extends Component {
                             onChange = {this.onChangePassword}
                             placeholder = "Enter password"
                             />
+                        <h3>hi</h3>
                     </div>
                     <div className = "form-group">
                         <label>Check password:</label>

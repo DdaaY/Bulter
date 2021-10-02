@@ -14,6 +14,8 @@ export default class Signin extends Component {
         this.state = {
             email: '',
             password:  '',
+            passwordInDB: '',
+            errorMessage: 'no error here',
         }
     }
 
@@ -29,28 +31,59 @@ export default class Signin extends Component {
         });
     }
 
-    onSubmit(e) {
+    async onSubmit(e) {
         e.preventDefault();
+
+        this.setState({
+            passwordInDB: '',
+            errorMessage:'no error here',
+        })
 
         const user = {
             email: this.state.email,
             password: this.state.password
         }
-
         console.log(user);
+
         //use axios to check if user is in DB
-        axios.get('http://localhost:5000/signin/check'+this.state.email)
+        await axios.get('http://localhost:5000/signin/'+this.state.email)
         .then(res => {
-            console.log(res)
+            this.setState({
+                passwordInDB: res.data[0].password
+            });
         })
         .catch((error) => {
             console.log(error)
         })
+        //error message
         
+        if(this.state.passwordInDB.length === 0){
+            this.setState({
+                errorMessage:'email has not been registerd'
+            })
+        }else{
+            if(this.state.password !== this.state.passwordInDB ){
+                this.setState({
+                    errorMessage: 'Password is incorrect'
+                })
+            }
+        }
 
-        //change IsSignin to true
-        this.props.handle();
+
+
+        console.log(this.state.errorMessage);
+
+        if(this.state.errorMessage === 'no error here'){
+            window.location = '/home';
+            return;
+        }
+
+        this.setState({
+            password: '',
+        })
+
         //auto move to home page
+        // window.location = '/home';
     }
 
 
