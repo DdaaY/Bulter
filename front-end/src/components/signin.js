@@ -38,6 +38,7 @@ export default class Signin extends Component {
         this.setState({
             passwordInDB: '',
             errorMessage:'no error here',
+            _id: 0,
         })
 
         const user = {
@@ -59,6 +60,7 @@ export default class Signin extends Component {
         })
         //error message
         
+        //verification
         if(this.state.passwordInDB.length === 0){
             this.setState({
                 errorMessage:'email has not been registerd'
@@ -71,22 +73,18 @@ export default class Signin extends Component {
             }
         }
 
-
-
-        console.log(this.state.errorMessage);
-
+        //migrate to home page
         if(this.state.errorMessage === 'no error here'){
-            this.props.handle(this.state._id);
-            // window.location = '/home';
+            // this.props.handle(this.state._id);
+            window.location = '/home/'+this.state._id;
             return;
         }
 
+        
         this.setState({
             password: '',
         })
 
-        //auto move to home page
-        // window.location = '/home';
     }
 
 

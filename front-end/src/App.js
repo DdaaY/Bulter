@@ -16,10 +16,10 @@ import Intro from './components/intro';
 
 export default function App (){
 
-    const [user, setUser] = useState();//_id
+    const [ID, setID] = useState();//_id
     
-    function onChangeUser(id){
-        setUser(id);
+    function onChangeID(id){
+        setID(id);
         console.log(id);
     };
 
@@ -28,9 +28,11 @@ export default function App (){
             <Router>
                 <div className = "container">
                     <Route path='/' exact  component = {Intro} />
-                    <Route path='/home/:email' component = {Homepage} />
-                    <Route path='/signin' component = {() => <Signin handle = {onChangeUser}/>} />
-                    <Route path='/signup' component = {() => <Signup handle = {onChangeUser}/>} />
+                    <Route path='/home/:id' component = {Homepage} />
+                    <Route path='/signin' component = {Signin} />
+                    <Route path='/signup' component = {Signup} />
+                    {/* <Route path='/signin' component = {() => <Signin handle = {onChangeID}/>} />
+                    <Route path='/signup' component = {() => <Signup handle = {onChangeID}/>} /> */}
                 </div>
             </Router>
         </div>

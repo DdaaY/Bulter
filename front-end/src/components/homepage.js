@@ -5,8 +5,7 @@ export default class Homepage extends Component {
     render() {
         return (
             <div>
-                <Navbar/>
-                <h1>here is home page</h1>
+                <h1>{this.props.match.params.id}</h1>
             </div>
         )
     }

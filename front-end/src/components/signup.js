@@ -17,6 +17,7 @@ export default class Signin extends Component {
             password:  '',//recommend 8-20 characters and no limitation on the existence of special characters
             confirm_password: '',
             isExist: false,
+            _id: 0,
         }
     }
 
@@ -74,8 +75,17 @@ export default class Signin extends Component {
                 axios.post('http://localhost:5000/signup/add',user)
                 .then(res => console.log(res.data));
 
+                await axios.get('http://localhost:5000/signup/'+user.email)
+                .then(res => {
+                    console.log(res.data);
+                    this.setState({
+                        _id: res.data[0]._id,
+                    })
+                });
 
-                window.location = '/home';
+                // this.props.handle(this.state._id);
+
+                window.location = '/home/'+this.state._id;
             }
 
         }else{
