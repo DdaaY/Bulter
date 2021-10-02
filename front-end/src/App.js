@@ -1,7 +1,5 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-// import { makeStyles } from '@mui/styles'; 
-// import LoginForm from './components/LoginForm';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Homepage from './components/homepage';
@@ -18,14 +16,21 @@ import Intro from './components/intro';
 
 export default function App (){
 
+    const [user, setUser] = useState();//_id
+    
+    function onChangeUser(id){
+        setUser(id);
+        console.log(id);
+    };
+
     return(
         <div>
             <Router>
                 <div className = "container">
                     <Route path='/' exact  component = {Intro} />
-                    <Route path='/home' component = {Homepage} />
-                    <Route path='/signin' component = {Signin} />
-                    <Route path='/signup' component = {Signup} />
+                    <Route path='/home/:email' component = {Homepage} />
+                    <Route path='/signin' component = {() => <Signin handle = {onChangeUser}/>} />
+                    <Route path='/signup' component = {() => <Signup handle = {onChangeUser}/>} />
                 </div>
             </Router>
         </div>

@@ -16,6 +16,7 @@ export default class Signin extends Component {
             password:  '',
             passwordInDB: '',
             errorMessage: 'no error here',
+            _id: 0,
         }
     }
 
@@ -49,7 +50,8 @@ export default class Signin extends Component {
         await axios.get('http://localhost:5000/signin/'+this.state.email)
         .then(res => {
             this.setState({
-                passwordInDB: res.data[0].password
+                passwordInDB: res.data[0].password,
+                _id: res.data[0]._id,
             });
         })
         .catch((error) => {
@@ -74,7 +76,8 @@ export default class Signin extends Component {
         console.log(this.state.errorMessage);
 
         if(this.state.errorMessage === 'no error here'){
-            window.location = '/home';
+            this.props.handle(this.state._id);
+            // window.location = '/home';
             return;
         }
 
