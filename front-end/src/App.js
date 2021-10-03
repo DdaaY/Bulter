@@ -1,4 +1,4 @@
-import React ,{ Component }from 'react';
+import React ,{ useState }from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -6,6 +6,7 @@ import Homepage from './components/homepage';
 import Signin from './components/signin';
 import Signup from './components/signup';
 import Intro from './components/intro';
+import Sign from './components/sign';
 
 // const useStyles = makeStyles(theme => ({
 //     container : {
@@ -14,36 +15,23 @@ import Intro from './components/intro';
 // }));
 
 
-export default class App extends Component{
+export default function App(){
 
-    constructor(props){
-        super(props);
-
-        this.onChangeID = this.onChangeID.bind(this);
-
-        this.state = ({
-            id: 0,
-        })
-    }
     
-    onChangeID(id){
-        this.setState({
-            id: id
-        });
+    const [ID, setID] = useState();
 
-    };
-
-    render() {
+    if(!ID){
+        return(
+            <Sign setID = {setID} />
+        )
+    }else {
         return (
-            <div>
+            <div className = "container-fluid">
                 <Router>
                     <Switch>
-                    <div className = "container-fluid">
-                        <Route path='/' exact  component = {Intro} />
-                        <Route path='/home/:id' component = {Homepage} />
-                        <Route path='/signin' component = {() => <Signin handle = {this.onChangeID}/>} />
-                        <Route path='/signup' component = {() => <Signup handle = {this.onChangeID}/>} />
-                    </div>
+                        <Route path='/' exact>
+                            <Homepage id = {ID}/>
+                        </Route>
                     </Switch>
                 </Router>
             </div>

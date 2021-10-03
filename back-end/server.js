@@ -19,10 +19,8 @@ connection.once('open', ()=>{
 });
 
 const signinRouter = require('./routes/signin');
-const signupRouter = require('./routes/signup');
 
-app.use('/signin',signinRouter);
-app.use('/signup',signupRouter);
+app.use('/',signinRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

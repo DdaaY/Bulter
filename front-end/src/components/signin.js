@@ -1,6 +1,7 @@
 import { Component } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Signup from './signup';
 
 export default class Signin extends Component {
 
@@ -48,7 +49,7 @@ export default class Signin extends Component {
         console.log(user);
 
         //use axios to check if user is in DB
-        await axios.get('http://localhost:5000/signin/'+this.state.email)
+        await axios.get('http://localhost:5000/'+this.state.email)
         .then(res => {
             this.setState({
                 passwordInDB: res.data[0].password,
@@ -73,51 +74,54 @@ export default class Signin extends Component {
             }
         }
 
-        //migrate to home page
-        if(this.state.errorMessage === 'no error here'){
-            this.props.handle(this.state._id);
-            window.location = '/home/'+this.state._id;
-            return;
-        }
-
-        
         this.setState({
             password: '',
         })
+
+        //migrate to home page
+        if(this.state.errorMessage === 'no error here'){
+            this.props.setID(this.state._id);
+        }
+
+        
+        
 
     }
 
 
     render() {
-        return (
-            <div>
-                <h3>Sign in</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className = "form-group">
-                        <label>Email:</label>
-                        <input type='email'
-                            required
-                            className="form-control"
-                            value = {this.state.email}
-                            onChange = {this.onChangeEmail}
-                            />
-                    </div>
-                    <div className = "form-group">
-                        <label>Password:</label>
-                        <input type='password'
-                            required
-                            className="form-control"
-                            value = {this.state.password}
-                            onChange = {this.onChangePassword}/>
-                    </div>
+            return (
+                <div>
+                    <h3>Sign in</h3>
+                    <form onSubmit={this.onSubmit}>
+                        <div className = "form-group">
+                            <label>Email:</label>
+                            <input type='email'
+                                required
+                                className="form-control"
+                                value = {this.state.email}
+                                onChange = {this.onChangeEmail}
+                                />
+                        </div>
+                        <div className = "form-group">
+                            <label>Password:</label>
+                            <input type='password'
+                                required
+                                className="form-control"
+                                value = {this.state.password}
+                                onChange = {this.onChangePassword}/>
+                        </div>
+    
+                        <div className = "form-group">
+                            <input type = "submit" value = "Create user" className = "btn btn-primary"/>
+                        </div>
+                        <button onClick = {this.props.Conversion}> 
+                        sign up
+                        </button>
+                    </form>
+                </div>
+            );
 
-                    <div className = "form-group">
-                        <input type = "submit" value = "Create user" className = "btn btn-primary"/>
-                    </div>
-
-                </form>
-                <Link to={'/signup/'}>sign up</Link>
-            </div>
-        );
+        
     }
 }
