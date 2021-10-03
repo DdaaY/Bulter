@@ -27,6 +27,10 @@ A webpage software developed using a front-end and back-end separation architect
 `cd Bulter/front-end`\
 `npm start`
 
+## You can use the following account to sign in:
+  email: test@test.com
+  password: testtest
+
 # Dependencies
 
 | Front-End        | Back-End |
