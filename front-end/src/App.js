@@ -1,5 +1,5 @@
-import React,{ useState } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import React ,{ Component }from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Homepage from './components/homepage';
@@ -14,27 +14,39 @@ import Intro from './components/intro';
 // }));
 
 
-export default function App (){
+export default class App extends Component{
 
-    const [ID, setID] = useState();//_id
+    constructor(props){
+        super(props);
+
+        this.onChangeID = this.onChangeID.bind(this);
+
+        this.state = ({
+            id: 0,
+        })
+    }
     
-    function onChangeID(id){
-        setID(id);
-        console.log(id);
+    onChangeID(id){
+        this.setState({
+            id: id
+        });
+
     };
 
-    return(
-        <div>
-            <Router>
-                <div className = "container">
-                    <Route path='/' exact  component = {Intro} />
-                    <Route path='/home/:id' component = {Homepage} />
-                    <Route path='/signin' component = {Signin} />
-                    <Route path='/signup' component = {Signup} />
-                    {/* <Route path='/signin' component = {() => <Signin handle = {onChangeID}/>} />
-                    <Route path='/signup' component = {() => <Signup handle = {onChangeID}/>} /> */}
-                </div>
-            </Router>
-        </div>
-    );
+    render() {
+        return (
+            <div>
+                <Router>
+                    <Switch>
+                    <div className = "container-fluid">
+                        <Route path='/' exact  component = {Intro} />
+                        <Route path='/home/:id' component = {Homepage} />
+                        <Route path='/signin' component = {() => <Signin handle = {this.onChangeID}/>} />
+                        <Route path='/signup' component = {() => <Signup handle = {this.onChangeID}/>} />
+                    </div>
+                    </Switch>
+                </Router>
+            </div>
+        );
+    }
 }

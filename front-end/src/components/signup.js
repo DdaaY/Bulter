@@ -83,7 +83,7 @@ export default class Signin extends Component {
                     })
                 });
 
-                // this.props.handle(this.state._id);
+                this.props.handle(this.state._id);
 
                 window.location = '/home/'+this.state._id;
             }

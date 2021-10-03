@@ -2,10 +2,22 @@ import React ,{ Component } from 'react';
 import Navbar from './Navbar';
 
 export default class Homepage extends Component {
+
+    constructor(props){
+        super(props);
+
+        this.state = ({
+            id: this.props.match.params.id,
+        });
+
+
+    }
+
     render() {
         return (
             <div>
-                <h1>{this.props.match.params.id}</h1>
+                <Navbar id = {this.state.id} />
+                <h1>{this.state.id}</h1>
             </div>
         )
     }

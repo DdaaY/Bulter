@@ -6,6 +6,9 @@ export default class Navbar extends Component {
     constructor(props){
         super(props);
 
+        this.state = ({
+            id: this.props.id,
+        })
         
 
     }
@@ -13,24 +16,12 @@ export default class Navbar extends Component {
     render() {
         return (
             <div>
-                <nav className = "navbar navbar-dark bg-dark navbar-expand-lg">
-                    <Link to='/home/' className = "navbar-brand">Javis</Link>
-                    <div className = "collpase navbar-collapse">
-                        <ul className = "navbar-nav mr-auto">
-                            <li className = "navbar-item">
-                                <Link to='/' className = "nav-link">Exercises</Link>
-                            </li>
-                            <li className = "navbar-item">
-                                <Link to='/create' className = "nav-link">Create Exercise log</Link>
-                            </li>
-                            <li className = "navbar-item">
-                                <Link to='/user' className = "nav-link">Create User</Link>
-                            </li>
-                            <li className = 'navbar-item'>
-                                <Link to='/signin' className = 'nav-link'>Sign in</Link>
-                            </li>
-                        </ul>
-                    </div>
+                <nav className="navbar navbar-light bg-light justify-content-between">
+                    <Link to='/home/' className ="navbar-brand">Navbar</Link>
+                    <form className ="form-inline">
+                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button className="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
+                    </form>
                 </nav>
             </div>
         );

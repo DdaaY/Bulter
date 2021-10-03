@@ -75,7 +75,7 @@ export default class Signin extends Component {
 
         //migrate to home page
         if(this.state.errorMessage === 'no error here'){
-            // this.props.handle(this.state._id);
+            this.props.handle(this.state._id);
             window.location = '/home/'+this.state._id;
             return;
         }
